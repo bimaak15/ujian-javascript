@@ -10,7 +10,7 @@ var dataSiswa = [
 var totalNilai = 0;
 var siswaTertinggi = dataSiswa[0];
 
-// menampilkan setuap data siswa menggunakan document.writeln
+// menampilkan setiap data siswa
 dataSiswa.forEach(function (siswa) {
     var grade;
     var status;
@@ -26,7 +26,14 @@ dataSiswa.forEach(function (siswa) {
         status = "Tidak Lulus";
     }
 
-    document.writeln("Nama: " + siswa.nama + " - Nilai: " + siswa.nilai + " - Grade: " + grade + " - Status: " + status + "<br>");
+    // pakai Tailwind dikit biar rapi di dalam list
+    var colorClass = status === "Lulus" ? "text-green-600" : "text-red-600";
+    document.writeln("<div class='py-1 border-b border-gray-100 last:border-0'>" +
+        "<strong>" + siswa.nama + "</strong> &raquo; " +
+        "Nilai: " + siswa.nilai + " | " +
+        "Grade: <span class='font-bold'>" + grade + "</span> | " +
+        "Status: <span class='" + colorClass + "'>" + status + "</span>" +
+        "</div>");
 
     totalNilai += siswa.nilai;
 
@@ -35,26 +42,27 @@ dataSiswa.forEach(function (siswa) {
     }
 });
 
-console.log("Siswa dengan nilai tertinggi: " + siswaTertinggi.nama + " - Nilai: " + siswaTertinggi.nilai);
+// Menampilkan info tambahan di console
+console.log("Siswa tertinggi: " + siswaTertinggi.nama + " (" + siswaTertinggi.nilai + ")");
 var rataRata = totalNilai / dataSiswa.length;
-console.log("Rata-rata kelas: " + rataRata);
+console.log("Rata-rata: " + rataRata);
 
-// TRUE FALSE
+// TRUE FALSE (Cek angka 50)
 function periksa50(a, b) {
-    return a === 50 || b === 50 || a + b === 50;
+    return a === 50 || b === 50 || (a + b === 50);
 }
 
-document.writeln("<br>Cek angka 50:<br>");
-document.writeln(periksa50(50, 50) + "<br>");
-document.writeln(periksa50(20, 30) + "<br>");
-document.writeln(periksa50(20, 20) + "<br>");
-document.writeln(periksa50(50, 10) + "<br>");
+document.writeln("<div class='mt-4 pt-4 border-t border-gray-300 font-bold text-gray-700'>Cek angka 50 results:</div>");
+document.writeln("<div class='font-mono text-xs text-blue-500'>" +
+    "50, 50 -> " + periksa50(50, 50) + "<br>" +
+    "20, 30 -> " + periksa50(20, 30) + "<br>" +
+    "20, 20 -> " + periksa50(20, 20) + "<br>" +
+    "50, 10 -> " + periksa50(50, 10) + "</div>");
 
 
 // --- 2. PERKALIAN, PEMBAGIAN & TANGGAL ---
-// menggunakan window.onload agar kode ini berjalan setelah halaman HTML di refresh
 window.onload = function () {
-    // logic Tanggal
+    // ambil element untuk tanggal
     var sekarang = new Date();
     var dd = sekarang.getDate();
     var mm = sekarang.getMonth() + 1;
@@ -68,33 +76,32 @@ window.onload = function () {
     var format3 = dd + '-' + mm + '-' + yyyy;
     var format4 = dd + '/' + mm + '/' + yyyy;
 
-    // tampilkan tanggal di layar (mencari div dateOutput)
-    var outputTanggal = format1 + "<br>" + format2 + "<br>" + format3 + "<br>" + format4;
-    document.getElementById("dateOutput").innerHTML = outputTanggal;
+    // tampilkan di ID dateOutput
+    var outputTanggal =
+        "Format 1: " + format1 + "<br>" +
+        "Format 2: " + format2 + "<br>" +
+        "Format 3: " + format3 + "<br>" +
+        "Format 4: " + format4;
 
-    // cetak juga ke console
-    console.log(format1);
-    console.log(format2);
-    console.log(format3);
-    console.log(format4);
+    document.getElementById("dateOutput").innerHTML = outputTanggal;
 };
 
-// fungsi perkalian (bisa dipanggil kapan saja asal tombol diklik)
+// fungsi perkalian
 function multiply() {
-    var angka1 = document.getElementById("num1").value;
-    var angka2 = document.getElementById("num2").value;
-    var hasil = angka1 * angka2;
-    document.getElementById("result").innerText = hasil;
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    var res = num1 * num2;
+    document.getElementById("result").innerText = res;
 }
 
-// fungsi Pembagian
+// fungsi pembagian
 function divide() {
-    var angka1 = document.getElementById("num1").value;
-    var angka2 = document.getElementById("num2").value;
-    if (angka2 == 0) {
-        document.getElementById("result").innerText = "Tidak bisa bagi 0";
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    if (num2 == 0) {
+        document.getElementById("result").innerText = "Gak bisa bagi nol!";
         return;
     }
-    var hasil = angka1 / angka2;
-    document.getElementById("result").innerText = hasil;
+    var res = num1 / num2;
+    document.getElementById("result").innerText = res;
 }
