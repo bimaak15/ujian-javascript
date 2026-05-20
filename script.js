@@ -25,7 +25,7 @@ dataSiswa.forEach((siswa) => {
         status = "Tidak Lulus";
     }
 
-    document.writeln("Nama: " + siswa.nama + " - Nilai: " + siswa.nilai + " - Garde: " + grade + " - Status: " + status + "<br>");
+    document.writeln("Nama: " + siswa.nama + " - Nilai: " + siswa.nilai + " - Grade: " + grade + " - Status: " + status + "<br>");
 
     totalNilai += siswa.nilai;
 
