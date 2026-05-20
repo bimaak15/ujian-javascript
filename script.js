@@ -25,7 +25,7 @@ dataSiswa.forEach((siswa) => {
         status = "Tidak Lulus";
     }
 
-    document.writeln("Nama: " + siswa.nama + " - Nilai: " + siswa.nilai + " - Grade: " + grade + " - Status: " + status + "<br>");
+    document.writeln("Nama: " + siswa.nama + " - Nilai: " + siswa.nilai + " - Garde: " + grade + " - Status: " + status + "<br>");
 
     totalNilai += siswa.nilai;
 
@@ -41,7 +41,7 @@ function periksa50(a, b) {
     return a === 50 || b === 50 || a + b === 50;
 }
 
-document.writeln(periksa50(50, 50));
-document.writeln(periksa50(20, 30));
-document.writeln(periksa50(20, 20));
-document.writeln(periksa50(50, 10));
+document.writeln(periksa50(50, 50) + "<br>");
+document.writeln(periksa50(20, 30) + "<br>");
+document.writeln(periksa50(20, 20) + "<br>");
+document.writeln(periksa50(50, 10) + "<br>");
